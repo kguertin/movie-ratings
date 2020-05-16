@@ -27,7 +27,22 @@ exports.getPopular = (req, res) => {
 
 exports.getSearchResults = (req, res) => {
   const query = req.query.title;
+  const movies = [];
+
   axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${query}`)
-    .then(res => console.log(res.data.results))
+    .then(res => {
+      res.data.results.forEach(result => {
+        movies.push({
+          title: result.title,
+          description: result.overview
+        })
+      })
+    })
+    .then(() => {
+      res.render('search-results', {
+        pageTitle: 'Search Results',
+        movieData: movies
+      });
+    })
     .catch(err => console.log(err))
 }
