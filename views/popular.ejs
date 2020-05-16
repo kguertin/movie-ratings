@@ -1,0 +1,12 @@
+<%- include('includes/head') %>
+</head>
+
+<body>
+  <%- include('includes/nav') %>
+  <h1>Popular Moves Page</h1>
+
+  <% movieData.forEach(movie => { %>
+  <h3><%= movie.title %></h3>
+  <p><%= movie.description %></p>
+  <% }) %>
+</body>
