@@ -3,6 +3,10 @@ const axios = require('axios');
 
 const TMDB_KEY = process.env.TMDB_KEY
 
+exports.getHome = (req, res) => {
+  res.render('index', { pageTitle: 'Home' });
+}
+
 exports.getPopular = (req, res) => {
   const movies = [];
 
@@ -18,5 +22,12 @@ exports.getPopular = (req, res) => {
     .then(() => {
       res.render('popular', { pageTitle: 'Popular', movieData: movies });
     })
+    .catch(err => console.log(err));
+}
+
+exports.getSearchResults = (req, res) => {
+  const query = req.query.title;
+  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${query}`)
+    .then(res => console.log(res.data.results))
     .catch(err => console.log(err))
 }

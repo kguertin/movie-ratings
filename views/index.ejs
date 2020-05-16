@@ -3,7 +3,16 @@
 
 <body>
   <%- include('includes/nav')%>
-  <h1>This is the home Page</h1>
+  <main>
+    <h1>Home Page</h1>
+    <form action="/search-movies" method="GET">
+      <div>
+        <label for="search">Search for a Movie</label>
+        <input type="search" name="title" id="movie-search">
+      </div>
+      <button type="submit">Search</button>
+    </form>
+  </main>
 </body>
 
 </html>
