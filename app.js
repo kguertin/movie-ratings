@@ -1,12 +1,16 @@
 require('dotenv').config();
 const express = require('express');
-const fetch = require('fetch');
+const axios = require('axios');
 
-const PORT = process.env.PORT || 5000;
 const app = express();
 
+const PORT = process.env.PORT || 5000;
+const TMDB_ID = process.env.TMDB_KEY
+
 app.use('/', (req, res) => {
-  res.send('OK');
+  axios.get(`https://api.themoviedb.org/3/movie/550?api_key=${TMDB_ID}`)
+    .then(result => res.send(result.data.title))
+    .catch(err => console.log(err))
 });
 
 app.listen(PORT, () => {
