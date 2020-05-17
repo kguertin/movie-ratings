@@ -4,14 +4,16 @@
 <body>
   <%- include('includes/nav')%>
   <main>
-    <h1>Home Page</h1>
-    <form action="/search-movies" method="GET">
-      <div>
-        <label for="search">Search for a Movie</label>
-        <input type="search" name="title" id="movie-search">
-      </div>
-      <button type="submit">Search</button>
-    </form>
+    <div class="container">
+      <h1>Home Page</h1>
+      <form action="/search-movies" method="GET">
+        <div>
+          <label for="search">Search for a Movie</label>
+          <input type="search" name="title" id="movie-search">
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+    </div>
   </main>
 </body>
 

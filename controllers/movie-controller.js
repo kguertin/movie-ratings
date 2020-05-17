@@ -12,10 +12,12 @@ exports.getPopular = (req, res) => {
 
   axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_KEY}`)
     .then(res => {
-      res.data.results.forEach(item => {
+      res.data.results.forEach(result => {
         movies.push({
-          title: item.title,
-          description: item.overview
+          title: result.title,
+          movieId: result.id,
+          description: result.overview,
+          releaseYear: result.release_date.split('-')[0]
         })
       })
     })
@@ -34,7 +36,9 @@ exports.getSearchResults = (req, res) => {
       res.data.results.forEach(result => {
         movies.push({
           title: result.title,
-          description: result.overview
+          movieId: result.id,
+          description: result.overview,
+          releaseYear: result.release_date.split('-')[0]
         })
       })
     })

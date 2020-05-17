@@ -1,4 +1,4 @@
-.navbar {
+.nav {
   display: flex;
   justify-content: flex-start;
   background: #444;
@@ -7,18 +7,17 @@
   font-size: 18px;
 }
 
-.navbar .nav-item {
+.nav .nav-item {
   list-style: none;
   color: #fff;
-  padding: 20px 10px 0 10px
 }
 
-.navbar .nav-item a {
+.nav .nav-item a {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
 
-.navbar .nav-item a:hover {
+.nav .nav-item a:hover {
   color: #abff98;
 }
