@@ -1,15 +1,17 @@
 <%- include('includes/head') %>
+<link rel="stylesheet" href="/css/index.css">
 </head>
 
 <body>
   <%- include('includes/nav')%>
   <main>
     <div class="container">
-      <h1>Home Page</h1>
+      <h1 class="my-3">Home Page</h1>
       <form action="/search-movies" method="GET">
         <div>
-          <label for="search">Search for a Movie</label>
-          <input type="search" name="title" id="movie-search">
+          <label for="search">Search for a Movie:</label>
+          <input class="form-control mb-3" type="search" name="title" id="movie-search"
+            placeholder="Enter a Movie Title">
         </div>
         <button class="btn btn-primary" type="submit">Search</button>
       </form>

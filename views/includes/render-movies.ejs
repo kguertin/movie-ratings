@@ -1,12 +1,18 @@
 <% movieData.forEach(movie => { %>
-<div class="card" style="width: 18rem;">
+<div class="card mb-3">
   <div class="card-body">
-    <h5 class="card-title"><%= movie.title %> (<%= movie.releaseYear %>)</h5>
+    <h5 class="card-title pb-2"><%= movie.title %> (<%= movie.releaseYear %>)</h5>
     <p class="card-text"><%= movie.description %></p>
-    <form action="">
-      <input type="hidden" name="movieId" value="<%= movie.movieId %>">
-      <button type="submit" class="btn btn-secondary">Details</button>
-    </form>
+    <div class="card-buttons">
+      <form action="">
+        <input type="hidden" name="movieId" value="<%= movie.movieId %>">
+        <button type="submit" class="btn btn-secondary">Details</button>
+      </form>
+      <form action="">
+        <input type="hidden" name="movieId" value="<%= movie.movieId %>">
+        <button type="submit" class="btn btn-secondary">Add to Favourites</button>
+      </form>
+    </div>
   </div>
 </div>
 <% }) %>
