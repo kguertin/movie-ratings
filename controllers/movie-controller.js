@@ -50,3 +50,21 @@ exports.getSearchResults = (req, res) => {
     })
     .catch(err => console.log(err))
 }
+
+exports.getMovieDetails = (req, res) => {
+  const movie = {};
+  axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${TMDB_KEY}`)
+    .then(res => {
+      movie.title = res.data.title;
+      movie.movieId = res.data.id
+      movie.description = res.data.overview;
+      movie.releaseYear = res.data.release_date.split('-')[0]
+    })
+    .then(() => {
+      res.render('movie-details', {
+        pageTitle: `${movie.title} (${movie.releaseYear})`,
+        movieData: movie
+      })
+    })
+    .catch(err => console.log(err));
+}

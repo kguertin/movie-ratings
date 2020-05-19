@@ -4,7 +4,7 @@
     <h5 class="card-title pb-2"><%= movie.title %> (<%= movie.releaseYear %>)</h5>
     <p class="card-text"><%= movie.description %></p>
     <div class="card-buttons">
-      <form action="">
+      <form action="/movies/<%= movie.movieId %>">
         <input type="hidden" name="movieId" value="<%= movie.movieId %>">
         <button type="submit" class="btn btn-secondary">Details</button>
       </form>
