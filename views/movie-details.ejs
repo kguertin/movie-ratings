@@ -4,6 +4,15 @@
 <body>
   <%- include('includes/nav')%>
   <main>
+    <div class="container my-3">
+      <div class="card">
+        <h2 class="card-header"><%= movieData.title %> (<%= movieData.releaseYear %>)</h2>
+        <div class="card-body">
+          <p class="card-text"><%= movieData.description %></p>
+          <a href="#" class="btn btn-primary">Add to Favourites</a>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 
