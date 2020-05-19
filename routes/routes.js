@@ -12,6 +12,8 @@ router.get('/movies/:id', movieController.getMovieDetails);
 
 router.get('/login', userController.getLogin);
 
+router.post('/login', userController.postLogin);
+
 router.get('/signup', userController.getSignUp);
 
 router.get('/', movieController.getHome);

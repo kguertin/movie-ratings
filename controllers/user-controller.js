@@ -1,5 +1,11 @@
 exports.getLogin = (req, res) => {
-  res.send('Login')
+  res.render('login', {
+    pageTitle: 'Login'
+  })
+}
+
+exports.postLogin = (req, res) => {
+  res.send('ok')
 }
 
 exports.getSignUp = (req, res) => {
