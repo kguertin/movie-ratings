@@ -1,3 +1,5 @@
+const User = require('../models/user')
+
 exports.getLogin = (req, res) => {
   res.render('login', {
     pageTitle: 'Login'
