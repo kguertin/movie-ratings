@@ -1,9 +1,14 @@
 const User = require('../models/user')
 
 exports.getLogin = (req, res) => {
-  res.render('login', {
-    pageTitle: 'Login'
+  User.findByPk(1)
+  .then(user => console.log(user))
+  .then(() => {
+    res.render('login', {
+      pageTitle: 'Login'
+     })
   })
+  .catch(err => console.log(err));
 }
 
 exports.postLogin = (req, res) => {
