@@ -8,8 +8,18 @@ exports.getLogin = (req, res) => {
 
 exports.postLogin = (req, res) => {
   const {username, password} = req.body
-  User.create({username, password })
-  res.send('ok');
+  User.findAll({where: {
+    username,
+    password
+  }})
+  .then(user => {
+    if (user.length > 0) {
+      res.redirect('/')
+    } else {
+      res.send('Invalid Username and/or Password');
+    }
+  })
+  .catch(err => console.log(err))
 }
 
 exports.getSignUp = (req, res) => {
@@ -26,9 +36,10 @@ exports.postSignUp = (req, res) => {
 })
   .then(user => {
     if (user.length > 0 ){
-      res.send('ok');
+      res.redirect('/login');
     } else {
-      res.send('user')
+      User.create({username, password, email})
+      res.redirect('/')
     }
   })
   .catch(err => console.log(err))
