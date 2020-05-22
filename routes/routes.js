@@ -16,6 +16,8 @@ router.post('/login', userController.postLogin);
 
 router.get('/signup', userController.getSignUp);
 
+router.post('/signup', userController.postSignUp)
+
 router.get('/', movieController.getHome);
 
 module.exports = router;

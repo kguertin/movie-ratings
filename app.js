@@ -19,9 +19,8 @@ app.use(express.static('public'));
 
 app.use(routes);
 
-sequelize.sync()
+sequelize.sync({force: true})
   .then(() => {
-    User.create({username: 'kevin'});
     app.listen(PORT, () => {
       console.log(`Now listening on port ${PORT}`);
     })

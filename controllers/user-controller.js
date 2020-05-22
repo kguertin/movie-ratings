@@ -1,20 +1,35 @@
 const User = require('../models/user')
 
 exports.getLogin = (req, res) => {
-  User.findByPk(1)
-  .then(user => console.log(user))
-  .then(() => {
-    res.render('login', {
-      pageTitle: 'Login'
-     })
-  })
-  .catch(err => console.log(err));
+  res.render('login', {
+    pageTitle: 'Login'
+  });
 }
 
 exports.postLogin = (req, res) => {
-  res.send('ok')
+  const {username, password} = req.body
+  User.create({username, password })
+  res.send('ok');
 }
 
 exports.getSignUp = (req, res) => {
-  res.send('Sign Up')
+  res.render('signup', {
+    pageTitle: 'Sign Up'
+  })
+}
+
+exports.postSignUp = (req, res) => {
+  const {username, password, email} = req.body;
+  User.findAll({where: {
+    username
+  }
+})
+  .then(user => {
+    if (user.length > 0 ){
+      res.send('ok');
+    } else {
+      res.send('user')
+    }
+  })
+  .catch(err => console.log(err))
 }
