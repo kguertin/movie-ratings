@@ -1,4 +1,6 @@
-const User = require('../models/user')
+const bcrypt = require('bcrypt');
+
+const User = require('../models/user');
 
 exports.getLogin = (req, res) => {
   res.render('login', {
@@ -8,16 +10,21 @@ exports.getLogin = (req, res) => {
 
 exports.postLogin = (req, res) => {
   const {username, password} = req.body
+  let validPassword;
+  
   User.findAll({where: {
-    username,
-    password
+    username
   }})
-  .then(user => {
-    if (user.length > 0) {
-      res.redirect('/')
-    } else {
-      res.send('Invalid Username and/or Password');
-    }
+   .then(users => {
+    console.log(users)
+    const user = users[0]
+    bcrypt.compare(password, user.password, (err, hash) => {
+      if (hash) {
+        res.redirect('/');
+      } else {
+        res.send('Invalid Username and/or Password');
+      } 
+    })
   })
   .catch(err => console.log(err))
 }
@@ -28,8 +35,10 @@ exports.getSignUp = (req, res) => {
   })
 }
 
-exports.postSignUp = (req, res) => {
-  const {username, password, email} = req.body;
+exports.postSignUp = async (req, res) => {
+  let {username, password, email} = req.body;
+  password = await bcrypt.hash(password, 10);
+    
   User.findAll({where: {
     username
   }
