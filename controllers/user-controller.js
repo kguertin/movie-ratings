@@ -9,11 +9,12 @@ exports.getLogin = (req, res) => {
 }
 
 exports.postLogin = (req, res) => {
+  console.log(req.body)
   const {username, password} = req.body
   let validPassword;
   
   User.findAll({where: {
-    username
+    username: username
   }})
    .then(users => {
     console.log(users)
