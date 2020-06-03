@@ -9,6 +9,7 @@ const sequelize = require('./util/database');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const User = require('./models/user');
+const {extendDefaultFields} = require('./models/session');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,20 +20,25 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+const sessionStore = new SequelizeStore({
+  db: sequelize,
+  table: 'session',
+  extendDefaultFields: extendDefaultFields
+});
+
 app.use(session({
   secret: 'my secret',
   resave: false,
   saveUninitialized: false,
-  store: new SequelizeStore({
-    db: sequelize
-  })
+  store: sessionStore
 }))
 
 const routes = require('./routes/routes');
 
 app.use(routes);
 
-sequelize.sync()
+sequelize.sync({force: true})
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Now listening on port ${PORT}`);
