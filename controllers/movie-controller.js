@@ -5,6 +5,7 @@ const TMDB_KEY = process.env.TMDB_KEY
 
 exports.getHome = (req, res) => {
   console.log(req.session.isLoggedIn)
+  console.log(req.session.userId)
   res.render('index', { pageTitle: 'Home' });
 }
 

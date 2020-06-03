@@ -23,18 +23,19 @@ exports.postLogin = (req, res) => {
     .then(users => {
       const user = users[0]
       console.log('USER INFORMATION: ', user);
-      if (user && password) {
-        bcrypt.compare(password, user.password)
-          .then(doMatch => {
-            if (doMatch) {
-              req.session.isLoggedIn = true;
-              req.session.userId = user.id;
-            }
-          })
+      if (!user || !password) {
+        return res.send('Invalid Username and/or Password');
+      }
+    
+      bcrypt.compare(password, user.password)
+        .then(doMatch => {
+          if (doMatch) {
+            req.session.isLoggedIn = true;
+            req.session.userId = user.id;
+          }
+        })
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
-      }
-      res.send('Invalid Username and/or Password');
     })
     .catch(err => console.log(err))
 }
@@ -51,7 +52,7 @@ exports.postSignUp = async (req, res) => {
     password,
     email
   } = req.body;
-  
+
   password = await bcrypt.hash(password, 10);
 
   User.findAll({
