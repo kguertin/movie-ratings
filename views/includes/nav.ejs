@@ -7,12 +7,22 @@
       <a class="nav-link" href="/popular">Trending</a>
     </li>
   </div>
-  <div class="nav-login">
-    <li class="nav-item mt-2 mr-2">
-      <a class="nav-link" href="/login">Login</a>
-    </li>
-    <li class="nav-item mt-2 mr-2">
-      <a class="nav-link" href="/signup">Sign Up</a>
-    </li>
-  </div>
+  <% if(!isAuthenticated) { %>
+    <div class="nav-login">
+      <li class="nav-item mt-2 mr-2">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item mt-2 mr-2">
+        <a class="nav-link" href="/signup">Sign Up</a>
+      </li>
+      <% } else { %>
+        <li class="nav-item mt-2 mr-2">
+          <form action="/logout" method="POST">
+            <button class="nav-link" type="submit">
+              Logout
+            </button>
+          </form>
+        </li>
+        <% } %>
+    </div>
 </ul>

@@ -34,11 +34,16 @@ app.use(session({
   store: sessionStore
 }))
 
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  next();
+})
+
 const routes = require('./routes/routes');
 
 app.use(routes);
 
-sequelize.sync({force: true})
+sequelize.sync()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Now listening on port ${PORT}`);
