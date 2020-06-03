@@ -4,10 +4,11 @@ const axios = require('axios');
 const TMDB_KEY = process.env.TMDB_KEY
 
 exports.getHome = (req, res) => {
+  console.log(req.session.isLoggedIn)
   res.render('index', { pageTitle: 'Home' });
 }
 
-exports.getPopular = (req, res) => {
+exports.getTrending = (req, res) => {
   const movies = [];
 
   axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_KEY}`)
@@ -22,7 +23,7 @@ exports.getPopular = (req, res) => {
       })
     })
     .then(() => {
-      res.render('popular', { pageTitle: 'Popular', movieData: movies });
+      res.render('trending', { pageTitle: 'Trending', movieData: movies });
     })
     .catch(err => console.log(err));
 }

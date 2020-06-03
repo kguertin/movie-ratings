@@ -4,7 +4,7 @@ const router = express.Router();
 const movieController = require('../controllers/movie-controller');
 const userController = require('../controllers/user-controller');
 
-router.get('/popular', movieController.getPopular);
+router.get('/popular', movieController.getTrending);
 
 router.get('/search-movies', movieController.getSearchResults);
 
