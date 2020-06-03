@@ -16,12 +16,17 @@
   color: #fff;
 }
 
+.nav .nav-item button {
+  color: #fff
+}
+
 .nav .nav-item a {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
 }
 
-.nav .nav-item a:hover {
+.nav .nav-item a:hover,
+.nav .nav-item button:hover {
   color: #abff98;
 }
