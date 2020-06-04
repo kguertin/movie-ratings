@@ -6,7 +6,9 @@ const TMDB_KEY = process.env.TMDB_KEY
 exports.getHome = (req, res) => {
   console.log(req.session.isLoggedIn)
   console.log(req.session.userId)
-  res.render('index', { pageTitle: 'Home' });
+  res.render('index', {
+    pageTitle: 'Home'
+  });
 }
 
 exports.getTrending = (req, res) => {
@@ -19,12 +21,15 @@ exports.getTrending = (req, res) => {
           title: result.title,
           movieId: result.id,
           description: result.overview,
-          releaseYear: result.release_date.split('-')[0]
+          releaseYear: result.release_date.split('-')[0],
         })
       })
     })
     .then(() => {
-      res.render('trending', { pageTitle: 'Trending', movieData: movies });
+      res.render('trending', {
+        pageTitle: 'Trending',
+        movieData: movies
+      });
     })
     .catch(err => console.log(err));
 }
@@ -57,10 +62,14 @@ exports.getMovieDetails = (req, res) => {
   const movie = {};
   axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${TMDB_KEY}`)
     .then(res => {
+      console.log(res.data)
       movie.title = res.data.title;
       movie.movieId = res.data.id
       movie.description = res.data.overview;
-      movie.releaseYear = res.data.release_date.split('-')[0]
+      movie.releaseYear = res.data.release_date.split('-')[0];
+      movie.runTime = res.data.runtime;
+      movie.revenue = res.data.revenue;
+      movie.genreTags = res.data.genres;
     })
     .then(() => {
       res.render('movie-details', {

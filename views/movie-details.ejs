@@ -1,19 +1,41 @@
 <%- include('includes/head') %>
-</head>
+  <link rel="stylesheet" href="/css/movie-details.css">
+  </head>
 
-<body>
-  <%- include('includes/nav')%>
-  <main>
-    <div class="container my-3">
-      <div class="card">
-        <h2 class="card-header"><%= movieData.title %> (<%= movieData.releaseYear %>)</h2>
-        <div class="card-body">
-          <p class="card-text"><%= movieData.description %></p>
-          <a href="#" class="btn btn-primary">Add to Favourites</a>
+  <body>
+    <%- include('includes/nav')%>
+      <main>
+        <div class="container my-3">
+          <div class="card">
+            <h2 class="card-header">
+              <%= movieData.title %> (
+                <%= movieData.releaseYear %>)</h2>
+            <div class="card-body">
+              <p class="card-text">
+                <%= movieData.description %>
+              </p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Revenue: $
+                <%= movieData.revenue %>
+              </li>
+              <li class="list-group-item">Run Time:
+                <%= movieData.runTime %> minutes</li>
+            </ul>
+            <div class="card-body centered-content">
+              <% movieData.genreTags.forEach(genre => { %>
+                <form action="/genre" method="GET" class="genre-tag">
+                  <input type="hidden" value="<%= genre.id %>">
+                  <button type="submit" class="btn btn-outline-dark"><%= genre.name %></button>
+                </form>
+                <% }) %>
+            </div>
+            <div class="card-body centered-content">
+              <a href="#" class="btn btn-dark">Add to Favourites</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </main>
-</body>
+      </main>
+  </body>
 
-</html>
+  </html>

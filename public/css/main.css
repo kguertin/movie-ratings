@@ -3,3 +3,9 @@ body {
   padding: 0;
   font-family: 'Ubuntu', sans-serif;
 }
+
+/*  Utility Classes */
+.centered-content {
+  display: flex;
+  justify-content: center;
+}

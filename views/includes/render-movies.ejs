@@ -3,7 +3,7 @@
   <div class="card-body">
     <h5 class="card-title pb-2"><%= movie.title %> (<%= movie.releaseYear %>)</h5>
     <p class="card-text"><%= movie.description %></p>
-    <div class="card-buttons">
+    <div class="card-buttons centered-content">
       <form action="/movies/<%= movie.movieId %>">
         <button type="submit" class="btn btn-secondary">Details</button>
       </form>
